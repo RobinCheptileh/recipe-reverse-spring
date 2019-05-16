@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/recipes")
 public class RecipeController {
 
     private final RecipeRepository recipeRepository;
@@ -13,23 +14,23 @@ public class RecipeController {
         this.recipeRepository = recipeRepository;
     }
 
-    @GetMapping("/recipes")
+    @GetMapping("/")
     List<Recipe> all() {
         return recipeRepository.findAll();
     }
 
-    @PostMapping("/recipes")
+    @PostMapping("/")
     Recipe newRecipe(@RequestBody Recipe recipe) {
         return recipeRepository.save(recipe);
     }
 
-    @GetMapping("/recipes/{id}")
+    @GetMapping("/{id}")
     Recipe oneRecipe(@PathVariable Long id) {
         return recipeRepository.findById(id)
                 .orElseThrow(() -> new RecipeNotFoundException(id));
     }
 
-    @PutMapping("recipes/{id}")
+    @PutMapping("/{id}")
     Recipe replaceRecipe(@RequestBody Recipe newRecipe, @PathVariable Long id) {
         return recipeRepository.findById(id)
                 .map(recipe -> {
@@ -45,7 +46,7 @@ public class RecipeController {
                 });
     }
 
-    @DeleteMapping("recipes/{id}")
+    @DeleteMapping("/{id}")
     void deleteRecipe(@PathVariable Long id) {
         recipeRepository.deleteById(id);
     }
