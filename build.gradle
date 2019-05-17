@@ -1,6 +1,7 @@
 plugins {
     id 'org.springframework.boot' version '2.1.5.RELEASE'
     id 'java'
+    id 'net.linguica.maven-settings' version '0.5'
 }
 
 apply plugin: 'io.spring.dependency-management'
@@ -15,14 +16,37 @@ configurations {
     }
 }
 
+task resolveDependencies {
+    doLast {
+        project.rootProject.allprojects.each { subProject ->
+            subProject.buildscript.configurations.each { configuration ->
+                if (configuration.isCanBeResolved()) {
+                    configuration.resolve()
+                }
+            }
+            subProject.configurations.each { configuration ->
+                if (configuration.isCanBeResolved()) {
+                    configuration.resolve()
+                }
+            }
+        }
+    }
+}
+
 repositories {
     mavenCentral()
+    maven {
+        url 'https://www.oracle.com/content/secure/maven/content'
+        name 'maven.oracle.com'
+    }
 }
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'com.oracle.jdbc:ojdbc8:18.3.0.0'
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'com.h2database:h2'
