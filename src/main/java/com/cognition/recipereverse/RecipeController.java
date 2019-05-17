@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/recipes")
+@RequestMapping("recipes")
 public class RecipeController {
 
     private final RecipeRepository recipeRepository;
@@ -14,14 +14,19 @@ public class RecipeController {
         this.recipeRepository = recipeRepository;
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     List<Recipe> all() {
         return recipeRepository.findAll();
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     Recipe newRecipe(@RequestBody Recipe recipe) {
         return recipeRepository.save(recipe);
+    }
+
+    @PostMapping("/many")
+    List<Recipe> newRecipes(@RequestBody List<Recipe> recipes) {
+        return recipeRepository.saveAll(recipes);
     }
 
     @GetMapping("/{id}")
