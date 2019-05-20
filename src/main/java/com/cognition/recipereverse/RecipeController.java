@@ -2,6 +2,7 @@ package com.cognition.recipereverse;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -27,6 +28,17 @@ public class RecipeController {
     @PostMapping("/many")
     List<Recipe> newRecipes(@RequestBody List<Recipe> recipes) {
         return recipeRepository.saveAll(recipes);
+    }
+
+    @GetMapping("/recommendations")
+    List<Recipe> recommendations(@RequestParam List<String> ingredients) {
+        List<Recipe> recommendations = new ArrayList<>();
+
+        for (Recipe recipe : recipeRepository.findAll())
+            if (recipe.getIngredients().containsAll(ingredients))
+                recommendations.add(recipe);
+
+        return recommendations;
     }
 
     @GetMapping("/{id}")
