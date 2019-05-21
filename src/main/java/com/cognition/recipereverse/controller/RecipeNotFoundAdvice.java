@@ -1,5 +1,6 @@
-package com.cognition.recipereverse;
+package com.cognition.recipereverse.controller;
 
+import com.cognition.recipereverse.exception.RecipeNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

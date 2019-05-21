@@ -1,4 +1,4 @@
-package com.cognition.recipereverse;
+package com.cognition.recipereverse.model;
 
 import lombok.Data;
 

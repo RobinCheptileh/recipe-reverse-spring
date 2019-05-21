@@ -1,5 +1,7 @@
-package com.cognition.recipereverse;
+package com.cognition.recipereverse.configuration;
 
+import com.cognition.recipereverse.repository.RecipeRepository;
+import com.cognition.recipereverse.model.Recipe;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;

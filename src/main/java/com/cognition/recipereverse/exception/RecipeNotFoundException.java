@@ -1,7 +1,7 @@
-package com.cognition.recipereverse;
+package com.cognition.recipereverse.exception;
 
 public class RecipeNotFoundException extends RuntimeException {
-    RecipeNotFoundException(Long id) {
+    public RecipeNotFoundException(Long id) {
         super("Cannot find recipe " + id);
     }
 }
