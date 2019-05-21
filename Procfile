@@ -1,1 +1,1 @@
-web: java -jar --server.port=9000 build/libs/recipe-reverse-1.0.jar
+web: java -jar --server.port=$PORT build/libs/recipe-reverse-1.0.jar
