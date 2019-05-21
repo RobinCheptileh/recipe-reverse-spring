@@ -2,6 +2,7 @@ HELP.md
 .gradle
 /build/
 !gradle/wrapper/gradle-wrapper.jar
+!build/libs/recipe-reverse-1.0.jar
 
 ### STS ###
 .apt_generated

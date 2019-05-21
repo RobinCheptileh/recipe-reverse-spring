@@ -1,1 +1,1 @@
-web: ./gradlew bootRun
+web: java -jar build/libs/recipe-reverse-1.0.jar
