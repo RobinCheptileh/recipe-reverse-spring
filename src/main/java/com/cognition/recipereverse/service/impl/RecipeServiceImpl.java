@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RecipeServiceImpl implements RecipeService {
@@ -57,7 +58,12 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public void deleteRecipe(Long id) {
-        recipeRepository.deleteById(id);
+        recipeRepository.findById(id)
+                .map(recipe -> {
+                    recipeRepository.delete(recipe);
+                    return Optional.empty();
+                })
+                .orElseThrow(() -> new RecipeNotFoundException(id));
     }
 
     @Override
