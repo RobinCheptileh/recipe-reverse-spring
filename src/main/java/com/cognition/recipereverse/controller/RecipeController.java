@@ -11,9 +11,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Api(value = "Recipes Management")
-@CrossOrigin(origins = {
-        "http://localhost:4200/"
-})
+@CrossOrigin()
 @RestController
 @RequestMapping("recipes")
 public class RecipeController {
